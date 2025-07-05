@@ -23,22 +23,22 @@ Conçue pour être simple à déployer, à utiliser et à étendre.
 ## Installation
 
 1. Clone ce dépôt :  
-   ```bash
-   git clone <url_du_repo>
-   cd mini-todo-api
-````
+```bash
+git clone <url_du_repo>
+cd mini-todo-api
+```
 
 2. Installe les dépendances :
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
 3. Lance le serveur :
 
-   ```bash
-   node server.js
-   ```
+```bash
+node server.js
+```
 
 4. L’API écoute sur `http://localhost:3000` par défaut.
 
