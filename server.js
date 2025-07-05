@@ -4,7 +4,11 @@ const cors = require('cors');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors()); // Permettre les requêtes depuis file:/// (utile si vous restez en local)
+
+//  -------- Setup --------
+const port = process.env.PORT || 3000;
+
 
 //  -------- Middleware --------
 const authMiddleware = require('./Middleware/authMiddleware.js');
@@ -14,6 +18,7 @@ const rateLimitMiddleware = require('./Middleware/rateLimitMiddleware.js');
 const users = new Map();
 const tasks = new Map();
 
+//  -------- Routes --------
 app.post('/users', rateLimitMiddleware, (req, res) => {
   const apiKey = crypto.randomBytes(16).toString('hex');
   users.set(apiKey, { createdAt: Date.now() });
@@ -67,6 +72,7 @@ app.delete('/tasks/:id', authMiddleware, (req, res) => {
   res.status(204).send();
 });
 
-app.listen(3000, () => {
-  console.log('API lancée sur http://localhost:3000');
+//  -------- Server --------
+app.listen(port, () => {
+  console.log('API lancée sur http://localhost:' + port);
 });
